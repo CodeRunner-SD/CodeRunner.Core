@@ -9,10 +9,10 @@ namespace CodeRunner.Pipelines
     {
         private readonly Dictionary<Type, Dictionary<string, ServiceItem>> pools = new Dictionary<Type, Dictionary<string, ServiceItem>>();
 
-        public Task<ServiceScope> CreateScope(string name)
+        public Task<IServiceScope> CreateScope(string name)
         {
             Assert.IsNotNull(name);
-            return Task.FromResult(new ServiceScope(name, pools));
+            return Task.FromResult<IServiceScope>(new ServiceScope(name, pools));
         }
     }
 }

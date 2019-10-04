@@ -15,13 +15,13 @@ namespace Test.Core.Pipelines
         };
         public static readonly PipelineOperation<int, Wrapper<int>> plus = context =>
         {
-            int arg = context.Services.Get<int>();
+            int arg = context.Services.GetService<int>();
             context.Logs.Information($"plus with {arg}");
             return Task.FromResult<Wrapper<int>>(context.Result! + arg);
         };
         public static readonly PipelineOperation<int, Wrapper<int>> multiply = context =>
         {
-            int arg = context.Services.Get<int>();
+            int arg = context.Services.GetService<int>();
             context.Logs.Information($"multiply with {arg}");
             return Task.FromResult<Wrapper<int>>(context.Result! * arg);
         };

@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace CodeRunner.Pipelines
 {
-    public class ServiceScope
+    public sealed class ServiceScope : IServiceScope
     {
         private Dictionary<Type, Dictionary<string, ServiceItem>> Pool { get; }
 
@@ -71,7 +71,7 @@ namespace CodeRunner.Pipelines
             }
         }
 
-        public T Get<T>(string id = "") where T : notnull
+        public T GetService<T>(string id = "") where T : notnull
         {
             Assert.IsNotNull(id);
             return (T)FindSubDictionary<T>()![id].Value;

@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Core", "test\Test.Core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Base", "test\Test.Base\Test.Base.csproj", "{9F438038-5596-4A26-88A2-EC59FD3BE4DD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8BED9778-29B3-4448-948C-A12A9EF0F133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6FC1A6A9-512A-4CE9-921A-83094AD82418} = {8BED9778-29B3-4448-948C-A12A9EF0F133}
+		{9F438038-5596-4A26-88A2-EC59FD3BE4DD} = {8BED9778-29B3-4448-948C-A12A9EF0F133}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C738B6A3-9A26-48D1-80B6-FBE65E926D84}

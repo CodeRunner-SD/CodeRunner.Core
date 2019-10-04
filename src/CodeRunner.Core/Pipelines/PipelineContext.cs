@@ -6,7 +6,7 @@ namespace CodeRunner.Pipelines
 {
     public class PipelineContext
     {
-        public PipelineContext(ServiceScope services, LoggerScope logs)
+        public PipelineContext(IServiceScope services, LoggerScope logs)
         {
             Assert.IsNotNull(services);
             Assert.IsNotNull(logs);
@@ -15,7 +15,7 @@ namespace CodeRunner.Pipelines
             Logs = logs;
         }
 
-        public ServiceScope Services { get; }
+        public IServiceScope Services { get; }
 
         public LoggerScope Logs { get; }
 
@@ -24,7 +24,7 @@ namespace CodeRunner.Pipelines
 
     public class PipelineContext<TOrigin, TResult> : PipelineContext where TResult : class
     {
-        public PipelineContext(ServiceScope services, TOrigin origin, TResult? result, LoggerScope logs) : base(services, logs)
+        public PipelineContext(IServiceScope services, TOrigin origin, TResult? result, LoggerScope logs) : base(services, logs)
         {
             Assert.IsNotNull(services);
             Assert.IsNotNull(origin);

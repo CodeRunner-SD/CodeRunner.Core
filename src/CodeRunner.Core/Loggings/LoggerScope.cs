@@ -3,7 +3,7 @@ using System;
 
 namespace CodeRunner.Loggings
 {
-    public class LoggerScope
+    public sealed class LoggerScope
     {
         public LoggerScope(ILogger source, string name, LogLevel level)
         {
@@ -15,7 +15,7 @@ namespace CodeRunner.Loggings
             Level = level;
         }
 
-        private ILogger Source { get; }
+        internal ILogger Source { get; }
 
         public string Name { get; }
 

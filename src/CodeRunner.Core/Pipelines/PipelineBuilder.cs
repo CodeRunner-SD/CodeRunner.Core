@@ -12,7 +12,7 @@ namespace CodeRunner.Pipelines
 
         private List<(string, PipelineOperation<TOrigin, TResult>)> Ops { get; } = new List<(string, PipelineOperation<TOrigin, TResult>)>();
 
-        public PipelineBuilder<TOrigin, TResult> Configure(string name, Func<ServiceScope, Task> func)
+        public PipelineBuilder<TOrigin, TResult> Configure(string name, Func<IServiceScope, Task> func)
         {
             Assert.IsNotNull(name);
             Assert.IsNotNull(func);
@@ -21,7 +21,7 @@ namespace CodeRunner.Pipelines
             return this;
         }
 
-        public PipelineBuilder<TOrigin, TResult> Configure(string name, Action<ServiceScope> func)
+        public PipelineBuilder<TOrigin, TResult> Configure(string name, Action<IServiceScope> func)
         {
             Assert.IsNotNull(name);
             Assert.IsNotNull(func);
@@ -49,10 +49,10 @@ namespace CodeRunner.Pipelines
             {
                 switch (func)
                 {
-                    case Func<ServiceScope, Task> f:
+                    case Func<IServiceScope, Task> f:
                         await f(await services.CreateScope(name).ConfigureAwait(false)).ConfigureAwait(false);
                         break;
-                    case Action<ServiceScope> a:
+                    case Action<IServiceScope> a:
                         a(await services.CreateScope(name).ConfigureAwait(false));
                         break;
                 }

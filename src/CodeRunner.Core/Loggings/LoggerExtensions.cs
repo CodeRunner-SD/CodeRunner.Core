@@ -11,6 +11,14 @@ namespace CodeRunner.Loggings
             return new LoggerScope(logger, $"/{name}", level);
         }
 
+        public static LoggerScope CreateScope(this LoggerScope scope, string name, LogLevel level)
+        {
+            Assert.IsNotNull(scope);
+            Assert.IsNotNull(name);
+
+            return new LoggerScope(scope.Source, $"{scope.Name}/{name}", level);
+        }
+
         public static ILogger UseLevelFilter(this ILogger logger, LogLevel level)
         {
             Assert.IsNotNull(logger);
