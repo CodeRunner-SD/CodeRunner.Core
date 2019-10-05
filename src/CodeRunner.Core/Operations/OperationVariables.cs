@@ -15,49 +15,49 @@ namespace CodeRunner.Operations
 
         public static string GetInputPath(this ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.GetVariable<string>(VarInputPath);
         }
 
         public static string GetOutputPath(this ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.GetVariable<string>(VarOutputPath);
         }
 
         public static string GetShell(this ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.GetVariable<string>(VarShell);
         }
 
         public static string GetWorkingDirectory(this ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.GetVariable<string>(VarWorkingDirectory);
         }
 
         public static ResolveContext SetInputPath(this ResolveContext context, string value)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.WithVariable(VarInputPath.Name, value);
         }
 
         public static ResolveContext SetOutputPath(this ResolveContext context, string value)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.WithVariable(VarOutputPath.Name, value);
         }
 
         public static ResolveContext SetWorkingDirectory(this ResolveContext context, string value)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.WithVariable(VarWorkingDirectory.Name, value);
         }
 
         public static ResolveContext SetShell(this ResolveContext context, string value)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return context.WithVariable(VarShell.Name, value);
         }
     }

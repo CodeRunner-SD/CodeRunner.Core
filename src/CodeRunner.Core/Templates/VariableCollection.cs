@@ -26,9 +26,9 @@ namespace CodeRunner.Templates
 
         IEnumerator IEnumerable.GetEnumerator() => ((ICollection<Variable>)Variables).GetEnumerator();
 
-        public void Collect(BaseTemplate from)
+        public void Collect(ITemplate from)
         {
-            Assert.IsNotNull(from);
+            Assert.ArgumentNotNull(from, nameof(from));
 
             foreach (Variable v in from.GetVariables())
             {
@@ -36,11 +36,11 @@ namespace CodeRunner.Templates
             }
         }
 
-        public void Collect(IEnumerable<BaseTemplate> from)
+        public void Collect(IEnumerable<ITemplate> from)
         {
-            Assert.IsNotNull(from);
+            Assert.ArgumentNotNull(from, nameof(from));
 
-            foreach (BaseTemplate item in from)
+            foreach (ITemplate item in from)
             {
                 Collect(item);
             }

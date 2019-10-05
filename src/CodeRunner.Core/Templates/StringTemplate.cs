@@ -10,14 +10,14 @@ namespace CodeRunner.Templates
     {
         public static string GetVariableTemplate(string name)
         {
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(name, nameof(name));
 
             return $"{{{name}}}";
         }
 
         public StringTemplate(string content = "", IList<Variable>? variables = null)
         {
-            Assert.IsNotNull(content);
+            Assert.ArgumentNotNull(content, nameof(content));
 
             Content = content;
             UsedVariables = new List<Variable>(variables ?? Array.Empty<Variable>());
@@ -33,7 +33,7 @@ namespace CodeRunner.Templates
 
         public override Task<string> Resolve(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
 
             StringBuilder sb = new StringBuilder(Content);
             foreach (Variable v in UsedVariables)

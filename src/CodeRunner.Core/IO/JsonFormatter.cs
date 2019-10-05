@@ -9,7 +9,7 @@ namespace CodeRunner.IO
     {
         public static string Serialize(object value, JsonSerializerSettings? settings = null)
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
 
             return JsonConvert.SerializeObject(value, Formatting.Indented, settings ?? new JsonSerializerSettings
             {
@@ -19,7 +19,7 @@ namespace CodeRunner.IO
 
         public static T Deserialize<T>(string json)
         {
-            Assert.IsNotNull(json);
+            Assert.ArgumentNotNull(json, nameof(json));
 
             return JsonConvert.DeserializeObject<T>(json, new JsonSerializerSettings
             {

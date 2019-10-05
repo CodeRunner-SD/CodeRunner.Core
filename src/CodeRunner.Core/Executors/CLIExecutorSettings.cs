@@ -9,8 +9,8 @@ namespace CodeRunner.Executors
     {
         public CLIExecutorSettings(string filePath, IList<string> arguments)
         {
-            Assert.IsNotNull(filePath);
-            Assert.IsNotNull(arguments);
+            Assert.ArgumentNotNull(filePath, nameof(filePath));
+            Assert.ArgumentNotNull(arguments, nameof(arguments));
 
             FilePath = filePath;
             Arguments = arguments;

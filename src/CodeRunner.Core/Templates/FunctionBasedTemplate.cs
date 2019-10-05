@@ -9,7 +9,7 @@ namespace CodeRunner.Templates
     {
         public FunctionBasedTemplate(Func<ResolveContext, Task> func, IList<Variable>? variables = null)
         {
-            Assert.IsNotNull(func);
+            Assert.ArgumentNotNull(func, nameof(func));
             Func = func;
             UsedVariables = new List<Variable>(variables ?? Array.Empty<Variable>());
         }
@@ -20,7 +20,7 @@ namespace CodeRunner.Templates
 
         public override Task DoResolve(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return Func(context);
         }
 

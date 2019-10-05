@@ -13,10 +13,10 @@ namespace CodeRunner.Pipelines
     {
         public Pipeline(TOrigin origin, ILogger logger, ServiceProvider services, IReadOnlyList<(string, PipelineOperation<TOrigin, TResult>)> ops)
         {
-            Assert.IsNotNull(origin);
-            Assert.IsNotNull(logger);
-            Assert.IsNotNull(services);
-            Assert.IsNotNull(ops);
+            Assert.ArgumentNotNull(origin, nameof(origin));
+            Assert.ArgumentNotNull(logger, nameof(logger));
+            Assert.ArgumentNotNull(services, nameof(services));
+            Assert.ArgumentNotNull(ops, nameof(ops));
 
             Origin = origin;
             Logger = logger;
@@ -24,6 +24,8 @@ namespace CodeRunner.Pipelines
             Ops = ops;
             Logs = Logger.CreateScope("pipeline", LogLevel.Debug);
         }
+
+        public bool AlwaysThrow { get; set; } = false;
 
         private TOrigin Origin { get; }
 
@@ -81,6 +83,8 @@ namespace CodeRunner.Pipelines
             {
                 Exception = ex;
                 subLogScope.Error(ex);
+                if (AlwaysThrow)
+                    throw;
                 return false;
             }
 

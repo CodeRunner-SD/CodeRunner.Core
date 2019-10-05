@@ -20,8 +20,8 @@ namespace CodeRunner.Templates
 
         public override async Task<DirectoryInfo> ResolveTo(ResolveContext context, string path)
         {
-            Assert.IsNotNull(context);
-            Assert.IsNotNull(path);
+            Assert.ArgumentNotNull(context, nameof(context));
+            Assert.ArgumentNotNull(path, nameof(path));
 
             DirectoryInfo res = new DirectoryInfo(path);
             if (!res.Exists)
@@ -72,7 +72,7 @@ namespace CodeRunner.Templates
 
         public async Task FromBinary(FileInfo file)
         {
-            Assert.IsNotNull(file);
+            Assert.ArgumentNotNull(file, nameof(file));
 
             _ = UseName(file.Name).UseAttributes(file.Attributes)
                 .UseTemplate(new BinaryFileTemplate(await File.ReadAllBytesAsync(file.FullName).ConfigureAwait(false)));
@@ -80,7 +80,7 @@ namespace CodeRunner.Templates
 
         public async Task FromText(FileInfo file)
         {
-            Assert.IsNotNull(file);
+            Assert.ArgumentNotNull(file, nameof(file));
 
             _ = UseName(file.Name).UseAttributes(file.Attributes)
                 .UseTemplate(new TextFileTemplate(await File.ReadAllTextAsync(file.FullName).ConfigureAwait(false)));

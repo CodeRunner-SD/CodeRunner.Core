@@ -13,7 +13,7 @@ namespace CodeRunner.Loggings
 
             public override bool Filter(LogItem item)
             {
-                Assert.IsNotNull(item);
+                Assert.ArgumentNotNull(item, nameof(item));
                 return Func(item);
             }
         }
@@ -22,7 +22,7 @@ namespace CodeRunner.Loggings
 
         public static LogFilter Create(Func<LogItem, bool> filter)
         {
-            Assert.IsNotNull(filter);
+            Assert.ArgumentNotNull(filter, nameof(filter));
             return new FunctionalFilter(filter);
         }
     }

@@ -12,15 +12,15 @@ namespace CodeRunner.Pipelines
 
         public string Name => Source.Name;
 
-        IServiceScope Source { get; set; }
+        private IServiceScope Source { get; set; }
 
-        List<Func<Type, string, bool>> ReadFilters { get; } = new List<Func<Type, string, bool>>();
+        private List<Func<Type, string, bool>> ReadFilters { get; } = new List<Func<Type, string, bool>>();
 
-        List<Func<Type, string, bool>> WriteFilters { get; } = new List<Func<Type, string, bool>>();
+        private List<Func<Type, string, bool>> WriteFilters { get; } = new List<Func<Type, string, bool>>();
 
-        bool ReadAccess<T>(string id) => ReadFilters.Select(x => x(typeof(T), id)).All(x => x);
+        private bool ReadAccess<T>(string id) => ReadFilters.Select(x => x(typeof(T), id)).All(x => x);
 
-        bool WriteAccess<T>(string id) => WriteFilters.Select(x => x(typeof(T), id)).All(x => x);
+        private bool WriteAccess<T>(string id) => WriteFilters.Select(x => x(typeof(T), id)).All(x => x);
 
         public void Add<T>(T item, string id = "") where T : notnull
         {

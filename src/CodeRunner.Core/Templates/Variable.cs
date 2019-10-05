@@ -12,7 +12,7 @@ namespace CodeRunner.Templates
 
         public Variable(string name = "")
         {
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(name, nameof(name));
 
             Name = name;
             _ = Required();
@@ -43,7 +43,7 @@ namespace CodeRunner.Templates
 
         public Variable NotRequired(object value)
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
 
             IsRequired = false;
             DefaultValue = value;

@@ -8,7 +8,7 @@ namespace CodeRunner.IO
     {
         public TempFile(string ext = "")
         {
-            Assert.IsNotNull(ext);
+            Assert.ArgumentNotNull(ext, nameof(ext));
 
             string path = Path.Join(Path.GetTempPath(), Path.GetRandomFileName());
             if (!string.IsNullOrEmpty(ext))

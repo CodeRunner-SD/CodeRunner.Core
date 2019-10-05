@@ -32,16 +32,16 @@ namespace CodeRunner.Pipelines
 
         public void Add<T>(T item, string id = "") where T : notnull
         {
-            Assert.IsNotNull(item);
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(item, nameof(item));
+            Assert.ArgumentNotNull(id, nameof(id));
 
             OpenOrCreateSubDictionary<T>().Add(id, new ServiceItem(item, Name));
         }
 
         public void Replace<T>(T item, string id = "") where T : notnull
         {
-            Assert.IsNotNull(item);
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(item, nameof(item));
+            Assert.ArgumentNotNull(id, nameof(id));
 
             Dictionary<string, ServiceItem> list = OpenOrCreateSubDictionary<T>();
             if (list.ContainsKey(id))
@@ -56,7 +56,7 @@ namespace CodeRunner.Pipelines
 
         public void Remove<T>(string id = "")
         {
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(id, nameof(id));
 
             Dictionary<string, ServiceItem>? list = FindSubDictionary<T>();
             if (list != null)
@@ -73,19 +73,19 @@ namespace CodeRunner.Pipelines
 
         public T GetService<T>(string id = "") where T : notnull
         {
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(id, nameof(id));
             return (T)FindSubDictionary<T>()![id].Value;
         }
 
         public string GetSource<T>(string id = "") where T : notnull
         {
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(id, nameof(id));
             return FindSubDictionary<T>()![id].Source;
         }
 
         public bool TryGet<T>([NotNullWhen(true), MaybeNullWhen(false)] out T value, string id = "") where T : notnull
         {
-            Assert.IsNotNull(id);
+            Assert.ArgumentNotNull(id, nameof(id));
 
 #pragma warning disable CS8653 // 默认表达式为类型参数引入了 null 值。
             value = default;

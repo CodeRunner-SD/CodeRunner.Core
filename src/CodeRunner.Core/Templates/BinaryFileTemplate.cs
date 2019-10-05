@@ -11,7 +11,7 @@ namespace CodeRunner.Templates
 
         public BinaryFileTemplate(byte[] content)
         {
-            Assert.IsNotNull(content);
+            Assert.ArgumentNotNull(content, nameof(content));
             this.content = Convert.ToBase64String(content);
         }
 
@@ -20,15 +20,15 @@ namespace CodeRunner.Templates
             get => content;
             set
             {
-                Assert.IsNotNull(value);
+                Assert.ArgumentNotNull(value, nameof(value));
                 content = value;
             }
         }
 
         public override Task<FileInfo> ResolveTo(ResolveContext context, string path)
         {
-            Assert.IsNotNull(context);
-            Assert.IsNotNull(path);
+            Assert.ArgumentNotNull(context, nameof(context));
+            Assert.ArgumentNotNull(path, nameof(path));
 
             FileInfo res = new FileInfo(path);
             using (FileStream fs = res.Open(FileMode.Create))

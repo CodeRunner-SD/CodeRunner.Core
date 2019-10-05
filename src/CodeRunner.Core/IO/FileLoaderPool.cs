@@ -12,7 +12,7 @@ namespace CodeRunner.IO
 
         public TLoader Get(FileInfo file)
         {
-            Assert.IsNotNull(file);
+            Assert.ArgumentNotNull(file, nameof(file));
 
             if (Pool.TryGetValue(file.FullName, out TLoader? value))
             {

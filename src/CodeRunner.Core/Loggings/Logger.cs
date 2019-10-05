@@ -19,7 +19,7 @@ namespace CodeRunner.Loggings
             [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = "",
             [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)
         {
-            Assert.IsNotNull(item);
+            Assert.ArgumentNotNull(item, nameof(item));
 
             foreach (LogFilter v in Filters)
             {
@@ -40,7 +40,7 @@ namespace CodeRunner.Loggings
 
         public ILogger UseFilter(LogFilter filter)
         {
-            Assert.IsNotNull(filter);
+            Assert.ArgumentNotNull(filter, nameof(filter));
 
             Filters.Add(filter);
             return this;

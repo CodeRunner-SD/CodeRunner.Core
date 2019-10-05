@@ -12,7 +12,7 @@ namespace CodeRunner.Templates
 
         public TextFileTemplate(StringTemplate content)
         {
-            Assert.IsNotNull(content);
+            Assert.ArgumentNotNull(content, nameof(content));
 
             Content = content;
         }
@@ -21,8 +21,8 @@ namespace CodeRunner.Templates
 
         public override async Task<FileInfo> ResolveTo(ResolveContext context, string path)
         {
-            Assert.IsNotNull(context);
-            Assert.IsNotNull(path);
+            Assert.ArgumentNotNull(context, nameof(context));
+            Assert.ArgumentNotNull(path, nameof(path));
 
             string content = await Content.Resolve(context).ConfigureAwait(false);
             FileInfo res = new FileInfo(path);

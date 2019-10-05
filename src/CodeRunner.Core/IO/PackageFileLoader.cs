@@ -20,7 +20,7 @@ namespace CodeRunner.IO
 
         public override async Task Save(Package<T> value)
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
 
             using FileStream st = File.Open(FileMode.Create, FileAccess.Write);
             await value.Save(st).ConfigureAwait(false);

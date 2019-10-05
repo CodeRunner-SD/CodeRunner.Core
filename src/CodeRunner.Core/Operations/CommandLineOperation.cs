@@ -13,7 +13,7 @@ namespace CodeRunner.Operations
 
         public override async Task<PipelineBuilder<OperationWatcher, Wrapper<bool>>> Resolve(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
 
             CommandLineOperationSettings settings = await GetSettings(context).ConfigureAwait(false);
             string shell = string.IsNullOrEmpty(settings.Shell) ? context.GetShell() : settings.Shell;

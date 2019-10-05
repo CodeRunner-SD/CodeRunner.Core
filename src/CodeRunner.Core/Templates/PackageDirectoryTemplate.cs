@@ -40,8 +40,8 @@ namespace CodeRunner.Templates
 
         public override async Task<DirectoryInfo> ResolveTo(ResolveContext context, string path)
         {
-            Assert.IsNotNull(context);
-            Assert.IsNotNull(path);
+            Assert.ArgumentNotNull(context, nameof(context));
+            Assert.ArgumentNotNull(path, nameof(path));
 
             string realPath;
             string name = await Name.Resolve(context).ConfigureAwait(false);
@@ -110,7 +110,7 @@ namespace CodeRunner.Templates
 
         public async Task From(DirectoryInfo dir, bool asText = false)
         {
-            Assert.IsNotNull(dir);
+            Assert.ArgumentNotNull(dir, nameof(dir));
 
             _ = UseName(dir.Name).UseAttributes(dir.Attributes);
             foreach (FileInfo file in dir.GetFiles())

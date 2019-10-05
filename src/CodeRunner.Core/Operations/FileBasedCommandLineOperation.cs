@@ -24,7 +24,7 @@ namespace CodeRunner.Operations
 
         protected override async Task<CommandLineOperationSettings> GetSettings(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
 
             string inputPath = context.GetInputPath();
             string workingDir = context.GetWorkingDirectory();
@@ -49,7 +49,7 @@ namespace CodeRunner.Operations
 
         public static DirectoryTemplate GetDirectoryTemplate(string fileName = DefaultFileName)
         {
-            Assert.IsNotNull(fileName);
+            Assert.ArgumentNotNull(fileName, nameof(fileName));
 
             FileBasedCommandLineOperationSettings settings = new FileBasedCommandLineOperationSettings();
             PackageDirectoryTemplate res = new PackageDirectoryTemplate(new StringTemplate(StringTemplate.GetVariableTemplate("name"),

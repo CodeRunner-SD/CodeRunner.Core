@@ -11,7 +11,7 @@ namespace CodeRunner.IO
 
         protected ObjectFileLoader(FileInfo file)
         {
-            Assert.IsNotNull(file);
+            Assert.ArgumentNotNull(file, nameof(file));
             File = file;
         }
 

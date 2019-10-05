@@ -8,8 +8,8 @@ namespace CodeRunner.Pipelines
     {
         public PipelineContext(IServiceScope services, LoggerScope logs)
         {
-            Assert.IsNotNull(services);
-            Assert.IsNotNull(logs);
+            Assert.ArgumentNotNull(services, nameof(services));
+            Assert.ArgumentNotNull(logs, nameof(logs));
 
             Services = services;
             Logs = logs;
@@ -26,9 +26,9 @@ namespace CodeRunner.Pipelines
     {
         public PipelineContext(IServiceScope services, TOrigin origin, TResult? result, LoggerScope logs) : base(services, logs)
         {
-            Assert.IsNotNull(services);
-            Assert.IsNotNull(origin);
-            Assert.IsNotNull(logs);
+            Assert.ArgumentNotNull(services, nameof(services));
+            Assert.ArgumentNotNull(origin, nameof(origin));
+            Assert.ArgumentNotNull(logs, nameof(logs));
 
             Origin = origin;
             Result = result;

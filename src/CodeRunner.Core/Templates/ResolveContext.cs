@@ -13,15 +13,15 @@ namespace CodeRunner.Templates
 
         public ResolveContext WithVariable<T>(Variable variable, T value) where T : notnull
         {
-            Assert.IsNotNull(variable);
+            Assert.ArgumentNotNull(variable, nameof(variable));
 
             return WithVariable(variable.Name, value);
         }
 
         public ResolveContext WithVariable<T>(string name, T value) where T : notnull
         {
-            Assert.IsNotNull(name);
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(name, nameof(name));
+            Assert.ArgumentNotNull(value, nameof(value));
 
             if (Variables.ContainsKey(name))
             {
@@ -37,7 +37,7 @@ namespace CodeRunner.Templates
 
         public ResolveContext WithoutVariable(string name)
         {
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(name, nameof(name));
 
             _ = Variables.Remove(name);
             return this;
@@ -45,7 +45,7 @@ namespace CodeRunner.Templates
 
         public T GetVariable<T>(Variable variable)
         {
-            Assert.IsNotNull(variable);
+            Assert.ArgumentNotNull(variable, nameof(variable));
 
             if (Variables.TryGetValue(variable.Name, out object? val))
             {
@@ -63,7 +63,7 @@ namespace CodeRunner.Templates
 
         public bool TryGetVariable<T>(Variable variable, [NotNullWhen(true), MaybeNullWhen(false)] out T value)
         {
-            Assert.IsNotNull(variable);
+            Assert.ArgumentNotNull(variable, nameof(variable));
 
 #pragma warning disable CS8653 // 默认表达式为类型参数引入了 null 值。
             value = default;
@@ -87,7 +87,7 @@ namespace CodeRunner.Templates
 
         public bool HasVariable(string name)
         {
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(name, nameof(name));
             return Variables.ContainsKey(name);
         }
     }

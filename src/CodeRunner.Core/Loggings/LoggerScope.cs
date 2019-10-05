@@ -7,8 +7,8 @@ namespace CodeRunner.Loggings
     {
         public LoggerScope(ILogger source, string name, LogLevel level)
         {
-            Assert.IsNotNull(source);
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(source, nameof(source));
+            Assert.ArgumentNotNull(name, nameof(name));
 
             Source = source;
             Name = name;
@@ -26,7 +26,7 @@ namespace CodeRunner.Loggings
             [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = "",
             [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)
         {
-            Assert.IsNotNull(content);
+            Assert.ArgumentNotNull(content, nameof(content));
             if (level >= Level)
             {
                 Source.Log(new LogItem
@@ -44,7 +44,7 @@ namespace CodeRunner.Loggings
             [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = "",
             [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)
         {
-            Assert.IsNotNull(exception);
+            Assert.ArgumentNotNull(exception, nameof(exception));
             Error(exception.ToString(), memberName, sourceFilePath, sourceLineNumber);
         }
 
@@ -53,7 +53,7 @@ namespace CodeRunner.Loggings
             [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = "",
             [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)
         {
-            Assert.IsNotNull(exception);
+            Assert.ArgumentNotNull(exception, nameof(exception));
             Fatal(exception.ToString(), memberName, sourceFilePath, sourceLineNumber);
         }
 

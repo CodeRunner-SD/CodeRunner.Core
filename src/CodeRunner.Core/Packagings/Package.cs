@@ -16,7 +16,7 @@ namespace CodeRunner.Packagings
 
         public Package(T data) : this()
         {
-            Assert.IsNotNull(data);
+            Assert.ArgumentNotNull(data, nameof(data));
             Data = data;
         }
 

@@ -13,7 +13,7 @@ namespace CodeRunner.IO
 
         public override async Task Save(T value)
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
 
             using FileStream st = File.Open(FileMode.Create, FileAccess.Write);
             await JsonFormatter.Serialize(value, st).ConfigureAwait(false);

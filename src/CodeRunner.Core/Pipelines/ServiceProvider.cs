@@ -11,7 +11,7 @@ namespace CodeRunner.Pipelines
 
         public Task<IServiceScope> CreateScope(string name)
         {
-            Assert.IsNotNull(name);
+            Assert.ArgumentNotNull(name, nameof(name));
             return Task.FromResult<IServiceScope>(new ServiceScope(name, pools));
         }
     }

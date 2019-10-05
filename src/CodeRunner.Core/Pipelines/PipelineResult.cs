@@ -18,7 +18,7 @@ namespace CodeRunner.Pipelines
 
         public PipelineResult(T? result, PipelineStepException? ex, IReadOnlyList<LogItem> logs)
         {
-            Assert.IsNotNull(logs);
+            Assert.ArgumentNotNull(logs, nameof(logs));
             Assert.IsTrue(Exception == null && result != null || Exception != null);
 
             Exception = ex;

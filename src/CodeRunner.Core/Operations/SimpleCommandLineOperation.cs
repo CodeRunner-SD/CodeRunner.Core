@@ -15,9 +15,9 @@ namespace CodeRunner.Operations
 
         public IList<CommandLineTemplate> Items { get; }
 
-        public BaseOperation Use(CommandLineTemplate command)
+        public SimpleCommandLineOperation Use(CommandLineTemplate command)
         {
-            Assert.IsNotNull(command);
+            Assert.ArgumentNotNull(command, nameof(command));
 
             Items.Add(command);
             return this;

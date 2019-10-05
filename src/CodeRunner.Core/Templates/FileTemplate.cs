@@ -12,7 +12,7 @@ namespace CodeRunner.Templates
 
         public override Task<FileInfo> Resolve(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
             return ResolveTo(context, context.GetVariable<string>(Var));
         }
 

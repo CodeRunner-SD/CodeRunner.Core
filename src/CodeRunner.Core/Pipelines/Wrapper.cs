@@ -12,7 +12,7 @@ namespace CodeRunner.Pipelines
 
         public static implicit operator T(Wrapper<T> value)
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
             return value.Value;
         }
 

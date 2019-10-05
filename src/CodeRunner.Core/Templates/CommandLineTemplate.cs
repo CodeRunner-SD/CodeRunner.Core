@@ -19,7 +19,7 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate UseCommand(StringTemplate command)
         {
-            Assert.IsNotNull(command);
+            Assert.ArgumentNotNull(command, nameof(command));
 
             Commands.Add(command);
             return this;
@@ -27,7 +27,7 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate UseArgument(StringTemplate argument)
         {
-            Assert.IsNotNull(argument);
+            Assert.ArgumentNotNull(argument, nameof(argument));
 
             Arguments.Add(argument);
             return this;
@@ -35,9 +35,9 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate WithOption(StringTemplate id, StringTemplate value, string prefix = "")
         {
-            Assert.IsNotNull(id);
-            Assert.IsNotNull(value);
-            Assert.IsNotNull(prefix);
+            Assert.ArgumentNotNull(id, nameof(id));
+            Assert.ArgumentNotNull(value, nameof(value));
+            Assert.ArgumentNotNull(prefix, nameof(prefix));
 
             id.Content = prefix + id.Content;
             StringTemplate f = Options.Where(x => x.Key.Content == id.Content).Select(x => x.Key).FirstOrDefault();
@@ -55,13 +55,13 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate WithOption(StringTemplate id, object value, string prefix = "")
         {
-            Assert.IsNotNull(value);
+            Assert.ArgumentNotNull(value, nameof(value));
             return WithOption(id, value.ToString() ?? string.Empty, prefix);
         }
 
         public CommandLineTemplate WithoutOption(string fullContent)
         {
-            Assert.IsNotNull(fullContent);
+            Assert.ArgumentNotNull(fullContent, nameof(fullContent));
 
             StringTemplate f = Options.Where(x => x.Key.Content == fullContent).Select(x => x.Key).FirstOrDefault();
             if (f != null)
@@ -74,8 +74,8 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate WithFlag(StringTemplate id, string prefix = "")
         {
-            Assert.IsNotNull(id);
-            Assert.IsNotNull(prefix);
+            Assert.ArgumentNotNull(id, nameof(id));
+            Assert.ArgumentNotNull(prefix, nameof(prefix));
 
             id.Content = prefix + id.Content;
             Flags.Add(id);
@@ -84,7 +84,7 @@ namespace CodeRunner.Templates
 
         public CommandLineTemplate WithoutFlag(string fullContent)
         {
-            Assert.IsNotNull(fullContent);
+            Assert.ArgumentNotNull(fullContent, nameof(fullContent));
 
             StringTemplate f = Flags.Where(x => x.Content == fullContent).FirstOrDefault();
             if (f != null)
@@ -97,7 +97,7 @@ namespace CodeRunner.Templates
 
         public override async Task<string[]> Resolve(ResolveContext context)
         {
-            Assert.IsNotNull(context);
+            Assert.ArgumentNotNull(context, nameof(context));
 
             List<string> items = new List<string>();
             foreach (StringTemplate v in Commands)

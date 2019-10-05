@@ -14,8 +14,8 @@ namespace CodeRunner.Pipelines
 
         public PipelineBuilder<TOrigin, TResult> Configure(string name, Func<IServiceScope, Task> func)
         {
-            Assert.IsNotNull(name);
-            Assert.IsNotNull(func);
+            Assert.ArgumentNotNull(name, nameof(name));
+            Assert.ArgumentNotNull(func, nameof(func));
 
             Configures.Add((name, func));
             return this;
@@ -23,8 +23,8 @@ namespace CodeRunner.Pipelines
 
         public PipelineBuilder<TOrigin, TResult> Configure(string name, Action<IServiceScope> func)
         {
-            Assert.IsNotNull(name);
-            Assert.IsNotNull(func);
+            Assert.ArgumentNotNull(name, nameof(name));
+            Assert.ArgumentNotNull(func, nameof(func));
 
             Configures.Add((name, func));
             return this;
@@ -32,8 +32,8 @@ namespace CodeRunner.Pipelines
 
         public PipelineBuilder<TOrigin, TResult> Use(string name, PipelineOperation<TOrigin, TResult> op)
         {
-            Assert.IsNotNull(name);
-            Assert.IsNotNull(op);
+            Assert.ArgumentNotNull(name, nameof(name));
+            Assert.ArgumentNotNull(op, nameof(op));
 
             Ops.Add((name, op));
             return this;
@@ -41,8 +41,8 @@ namespace CodeRunner.Pipelines
 
         public async Task<Pipeline<TOrigin, TResult>> Build(TOrigin origin, ILogger logger)
         {
-            Assert.IsNotNull(origin);
-            Assert.IsNotNull(logger);
+            Assert.ArgumentNotNull(origin, nameof(origin));
+            Assert.ArgumentNotNull(logger, nameof(logger));
 
             ServiceProvider services = new ServiceProvider();
             foreach ((string name, object func) in Configures)
