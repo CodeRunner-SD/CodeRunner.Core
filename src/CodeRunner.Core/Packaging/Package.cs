@@ -3,7 +3,7 @@ using CodeRunner.IO;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace CodeRunner.Packagings
+namespace CodeRunner.Packaging
 {
     public static class Package
     {

@@ -1,6 +1,4 @@
-﻿using System.CommandLine.Rendering;
-
-namespace CodeRunner.Extensions.Helpers.Rendering
+﻿namespace CodeRunner.Extensions.Terminals.Rendering
 {
     public interface IOutputTableColumnView<T>
     {

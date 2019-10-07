@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeRunner.Packagings
+namespace CodeRunner.Packaging
 {
     public class PackageMetadata
     {

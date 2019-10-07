@@ -1,6 +1,7 @@
 ﻿using CodeRunner.Diagnostics;
 using CodeRunner.Loggings;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
 namespace CodeRunner.Pipelines
 {
@@ -43,6 +44,13 @@ namespace CodeRunner.Pipelines
         {
             Logs.Log("Pipeline ignore result.", LogLevel.Debug);
             throw new PipelineResultIgnoreException();
+        }
+
+        [DoesNotReturn]
+        public Task<TResult> IgnoreResultAsync()
+        {
+            Logs.Log("Pipeline ignore result.", LogLevel.Debug);
+            return Task.FromException<TResult>(new PipelineResultIgnoreException());
         }
     }
 }

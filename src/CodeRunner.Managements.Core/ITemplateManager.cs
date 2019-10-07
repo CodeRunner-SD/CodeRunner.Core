@@ -1,5 +1,5 @@
 ﻿using CodeRunner.Managements.Configurations;
-using CodeRunner.Packagings;
+using CodeRunner.Packaging;
 using CodeRunner.Templates;
 
 namespace CodeRunner.Managements

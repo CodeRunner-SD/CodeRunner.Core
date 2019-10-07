@@ -1,8 +1,7 @@
 ﻿using CodeRunner.Diagnostics;
 using System;
-using System.CommandLine.Rendering;
 
-namespace CodeRunner.Extensions.Helpers.Rendering
+namespace CodeRunner.Extensions.Terminals.Rendering
 {
     public class OutputTableColumnStringView<T> : IOutputTableColumnView<T>
     {
@@ -24,8 +23,16 @@ namespace CodeRunner.Extensions.Helpers.Rendering
 
         public virtual int MeasureHeader() => Header.Length;
 
-        public virtual void Render(ITerminal terminal, T value, int length) => terminal.Output(GetValue(value).PadRight(length));
+        public virtual void Render(ITerminal terminal, T value, int length)
+        {
+            Assert.ArgumentNotNull(terminal, nameof(terminal));
+            terminal.Output.Write(GetValue(value).PadRight(length));
+        }
 
-        public virtual void RenderHeader(ITerminal terminal, int length) => terminal.OutputEmphasize(Header.PadRight(length));
+        public virtual void RenderHeader(ITerminal terminal, int length)
+        {
+            Assert.ArgumentNotNull(terminal, nameof(terminal));
+            terminal.Output.WriteEmphasize(Header.PadRight(length));
+        }
     }
 }

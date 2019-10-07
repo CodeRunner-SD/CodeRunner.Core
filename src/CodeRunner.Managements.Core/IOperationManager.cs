@@ -1,6 +1,6 @@
 ﻿using CodeRunner.Managements.Configurations;
 using CodeRunner.Operations;
-using CodeRunner.Packagings;
+using CodeRunner.Packaging;
 
 namespace CodeRunner.Managements
 {

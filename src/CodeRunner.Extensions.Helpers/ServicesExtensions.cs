@@ -1,9 +1,8 @@
 ﻿using CodeRunner.Diagnostics;
+using CodeRunner.Extensions.Terminals;
 using CodeRunner.Loggings;
 using CodeRunner.Managements;
 using CodeRunner.Pipelines;
-using System.CommandLine;
-using System.IO;
 
 namespace CodeRunner.Extensions.Helpers
 {
@@ -21,22 +20,22 @@ namespace CodeRunner.Extensions.Helpers
             return scope.TryGet<IWorkItem>(out IWorkItem? workItem) ? workItem : null;
         }
 
-        public static IConsole GetConsole(this IServiceScope scope)
+        public static ITerminal GetTerminal(this IServiceScope scope)
         {
             Assert.ArgumentNotNull(scope, nameof(scope));
-            return scope.GetService<IConsole>();
+            return scope.GetService<ITerminal>();
+        }
+
+        public static IExtension GetExtension(this IServiceScope scope)
+        {
+            Assert.ArgumentNotNull(scope, nameof(scope));
+            return scope.GetService<IExtension>();
         }
 
         public static IHost GetHost(this IServiceScope scope)
         {
             Assert.ArgumentNotNull(scope, nameof(scope));
             return scope.GetService<IHost>();
-        }
-
-        public static TextReader GetInput(this IServiceScope scope)
-        {
-            Assert.ArgumentNotNull(scope, nameof(scope));
-            return scope.GetService<TextReader>();
         }
 
         public static ILogger GetLogger(this IServiceScope scope)

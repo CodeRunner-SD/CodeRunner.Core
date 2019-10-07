@@ -1,6 +1,5 @@
-﻿using CodeRunner.Pipelines;
-using System.CommandLine;
-using System.CommandLine.Invocation;
+﻿using CodeRunner.Commands;
+using CodeRunner.Pipelines;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,16 +11,12 @@ namespace CodeRunner.Extensions.Commands
 
         public abstract Command Configure();
 
-        protected abstract Task<int> Handle(T argument, IConsole console, InvocationContext context, PipelineContext operation, CancellationToken cancellationToken);
+        public abstract Task<int> Handle(T argument, ParserContext context, PipelineContext operation, CancellationToken cancellationToken);
 
         public virtual Command Build()
         {
             Command command = Configure();
-            command.Handler = CommandHandler.Create(async (T argument, IConsole console, InvocationContext context, PipelineContext pipeline, CancellationToken cancellationToken) =>
-            {
-                int res = await Handle(argument, console, context, pipeline, cancellationToken).ConfigureAwait(true);
-                return res;
-            });
+            command.Handler = GetType().GetMethod(nameof(Handle));
             return command;
         }
     }

@@ -1,9 +1,9 @@
-﻿using CodeRunner.Diagnostics;
+﻿using CodeRunner.Commands;
+using CodeRunner.Diagnostics;
 using CodeRunner.Extensions;
 using CodeRunner.Extensions.Commands;
 using System.Collections;
 using System.Collections.Generic;
-using System.CommandLine;
 using System.Linq;
 
 namespace CodeRunner.Managements.Extensions
