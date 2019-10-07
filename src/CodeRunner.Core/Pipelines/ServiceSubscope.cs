@@ -67,13 +67,13 @@ namespace CodeRunner.Pipelines
             }
         }
 
-        public ServiceSubscope UseReadFileter(Func<Type, string, bool> filter)
+        public ServiceSubscope UseReadFilter(Func<Type, string, bool> filter)
         {
             ReadFilters.Add(filter);
             return this;
         }
 
-        public ServiceSubscope UseWriteFileter(Func<Type, string, bool> filter)
+        public ServiceSubscope UseWriteFilter(Func<Type, string, bool> filter)
         {
             WriteFilters.Add(filter);
             return this;
@@ -82,15 +82,15 @@ namespace CodeRunner.Pipelines
         public ServiceSubscope NoRead<T>(string? id = null)
         {
             return id == null
-                ? UseReadFileter((type, _) => type != typeof(T))
-                : UseReadFileter((type, tid) => !(type == typeof(T) && tid == id));
+                ? UseReadFilter((type, _) => type != typeof(T))
+                : UseReadFilter((type, tid) => !(type == typeof(T) && tid == id));
         }
 
         public ServiceSubscope NoWrite<T>(string? id = null)
         {
             return id == null
-                ? UseWriteFileter((type, _) => type != typeof(T))
-                : UseWriteFileter((type, tid) => !(type == typeof(T) && tid == id));
+                ? UseWriteFilter((type, _) => type != typeof(T))
+                : UseWriteFilter((type, tid) => !(type == typeof(T) && tid == id));
         }
 
         public ServiceSubscope NoAccess<T>(string? id = null) => NoRead<T>(id).NoWrite<T>(id);

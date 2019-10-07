@@ -83,7 +83,8 @@ jobs:
     - name: Build
       env:
         CONFIG: ${{ matrix.config }}
-      run: dotnet build -c $env:CONFIG
+        SUFFIX: ${{ matrix.versionSuffix }}
+      run: dotnet build -c $env:CONFIG --version-suffix $env:SUFFIX
       shell: pwsh
     - name: Generate artifacts
       env:
@@ -106,4 +107,7 @@ jobs:
       run: |
         dotnet nuget push ./packages/CodeRunner.Core.0.0.1-$env:SUFFIX.nupkg -k $env:MYGET_TOKEN -s https://www.myget.org/F/stardustdl/api/v2/package
         dotnet nuget push ./packages/CodeRunner.Managements.Core.0.0.1-$env:SUFFIX.nupkg -k $env:MYGET_TOKEN -s https://www.myget.org/F/stardustdl/api/v2/package
+        dotnet nuget push ./packages/CodeRunner.Extensions.Core.0.0.1-$env:SUFFIX.nupkg -k $env:MYGET_TOKEN -s https://www.myget.org/F/stardustdl/api/v2/package
+        dotnet nuget push ./packages/CodeRunner.Extensions.Helpers.0.0.1-$env:SUFFIX.nupkg -k $env:MYGET_TOKEN -s https://www.myget.org/F/stardustdl/api/v2/package
+        dotnet nuget push ./packages/CodeRunner.Managements.Extensions.0.0.1-$env:SUFFIX.nupkg -k $env:MYGET_TOKEN -s https://www.myget.org/F/stardustdl/api/v2/package
       shell: pwsh

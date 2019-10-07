@@ -2,8 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Nullable>enable</Nullable>
+
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CodeRunner.Core\CodeRunner.Core.csproj" />
-    <ProjectReference Include="..\..\src\CodeRunner.Managements.Core\CodeRunner.Managements.Core.csproj" />
+    <ProjectReference Include="..\..\src\CodeRunner.Extensions.Core\CodeRunner.Extensions.Core.csproj" />
+    <ProjectReference Include="..\..\src\CodeRunner.Extensions.Helpers\CodeRunner.Extensions.Helpers.csproj" />
   </ItemGroup>
 
 </Project>

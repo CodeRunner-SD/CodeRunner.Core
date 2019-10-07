@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
-    <RootNamespace>CodeRunner</RootNamespace>
+    <RootNamespace>CodeRunner.Extensions</RootNamespace>
     <VersionPrefix>0.0.1</VersionPrefix>
     <Authors>StardustDL</Authors>
-    <Product>CodeRunner.Core</Product>
+    <Description>The core extension types and functions of CodeRunner.</Description>
     <Copyright>Copyright (c) StardustDL. All rights reserved.</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/CodeRunner-SD/CodeRunner.Core</PackageProjectUrl>
@@ -15,7 +14,6 @@
     <RepositoryType>Git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>The core types and functions of CodeRunner.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,12 +21,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Validation" Version="15.5.31" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.CommandLine.Experimental" Version="0.3.0-alpha.19405.1" />
+    <PackageReference Include="System.CommandLine.Rendering" Version="0.3.0-alpha.19405.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <ProjectReference Include="..\CodeRunner.Core\CodeRunner.Core.csproj" />
+    <ProjectReference Include="..\CodeRunner.Managements.Core\CodeRunner.Managements.Core.csproj" />
   </ItemGroup>
 
 </Project>
