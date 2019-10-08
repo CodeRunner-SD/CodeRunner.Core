@@ -10,21 +10,29 @@ namespace CodeRunner.Managements.Extensions
 {
     public class CommandCollection : IEnumerable<ICommandBuilder>
     {
-        private Dictionary<ICommandBuilder, IExtension> Builers { get; set; } = new Dictionary<ICommandBuilder, IExtension>();
+        private Dictionary<ICommandBuilder, IExtension> Builders { get; set; } = new Dictionary<ICommandBuilder, IExtension>();
 
         private Dictionary<Command, ICommandBuilder> Commands { get; set; } = new Dictionary<Command, ICommandBuilder>();
 
         public IEnumerable<Command> GetCommands() => Commands.Keys.AsEnumerable();
 
-        public IExtension GetExtension(ICommandBuilder builder) => Builers[builder];
+        public IExtension GetExtension(ICommandBuilder builder) => Builders[builder];
 
-        public IExtension GetExtension(Command command) => Builers[GetProvider(command)];
+        public IExtension GetExtension(Command command) => Builders[GetBuilder(command)];
 
-        public ICommandBuilder GetProvider(Command command) => Commands[command];
+        public ICommandBuilder GetBuilder(Command command) => Commands[command];
 
-        public ICommandBuilder? GetProvider(string name) => Builers.Keys.Where(x => x.Name == name).FirstOrDefault();
+        public ICommandBuilder? GetBuilder(string fullName)
+        {
+            foreach ((ICommandBuilder k, IExtension v) in Builders)
+            {
+                if (v.GetFullName(k) == fullName)
+                    return k;
+            }
+            return null;
+        }
 
-        public bool Contains(ICommandBuilder builder) => Builers.ContainsKey(builder);
+        public bool Contains(ICommandBuilder builder) => Builders.ContainsKey(builder);
 
         public bool Contains(Command command) => Commands.ContainsKey(command);
 
@@ -46,7 +54,7 @@ namespace CodeRunner.Managements.Extensions
         {
             Assert.ArgumentNotNull(builder, nameof(builder));
             Assert.ArgumentNotNull(extension, nameof(extension));
-            Builers.Add(builder, extension);
+            Builders.Add(builder, extension);
         }
 
         public void Unregister(params ICommandBuilder[] builders)
@@ -60,7 +68,7 @@ namespace CodeRunner.Managements.Extensions
                     if (v == builder)
                         Assert.Fail("The provider is used for some workspace.");
                 }
-                _ = Builers.Remove(builder);
+                _ = Builders.Remove(builder);
             }
         }
 
@@ -68,7 +76,7 @@ namespace CodeRunner.Managements.Extensions
         {
             Assert.ArgumentNotNull(extension, nameof(extension));
             List<ICommandBuilder> toRemoved = new List<ICommandBuilder>();
-            foreach ((ICommandBuilder k, IExtension v) in Builers)
+            foreach ((ICommandBuilder k, IExtension v) in Builders)
             {
                 if (v == extension)
                     toRemoved.Add(k);
@@ -78,6 +86,6 @@ namespace CodeRunner.Managements.Extensions
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public IEnumerator<ICommandBuilder> GetEnumerator() => Builers.Keys.GetEnumerator();
+        public IEnumerator<ICommandBuilder> GetEnumerator() => Builders.Keys.GetEnumerator();
     }
 }

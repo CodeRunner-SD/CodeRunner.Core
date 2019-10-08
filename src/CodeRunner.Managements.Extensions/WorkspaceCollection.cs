@@ -21,7 +21,15 @@ namespace CodeRunner.Managements.Extensions
 
         public IWorkspaceProvider GetProvider(IWorkspace workspace) => Workspaces[workspace];
 
-        public IWorkspaceProvider? GetProvider(string name) => Providers.Keys.Where(x => x.Name == name).FirstOrDefault();
+        public IWorkspaceProvider? GetProvider(string fullName)
+        {
+            foreach ((IWorkspaceProvider k, IExtension v) in Providers)
+            {
+                if (v.GetFullName(k) == fullName)
+                    return k;
+            }
+            return null;
+        }
 
         public bool Contains(IWorkspaceProvider provider) => Providers.ContainsKey(provider);
 

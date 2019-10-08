@@ -45,6 +45,16 @@ namespace CodeRunner.Managements.Extensions
             return Loaders[key];
         }
 
+        public ExtensionLoader? Get(string fullName)
+        {
+            foreach (ExtensionLoader v in Loaders.Values)
+            {
+                if (v.Extension.GetFullName() == fullName)
+                    return v;
+            }
+            return null;
+        }
+
         public bool TryGet(Type type, [NotNullWhen(true), MaybeNullWhen(false)] out ExtensionLoader? value)
         {
             Assert.ArgumentNotNull(type, nameof(type));
