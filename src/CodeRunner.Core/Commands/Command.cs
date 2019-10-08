@@ -11,6 +11,8 @@ namespace CodeRunner.Commands
 
         public MethodInfo? Handler { get; set; }
 
+        public object? Invoker { get; set; }
+
         public IList<Option> Options { get; } = new List<Option>();
 
         public IList<Argument> Arguments { get; } = new List<Argument>();

@@ -17,6 +17,7 @@ namespace CodeRunner.Extensions.Commands
         {
             Command command = Configure();
             command.Handler = GetType().GetMethod(nameof(Handle));
+            command.Invoker = this;
             return command;
         }
     }
